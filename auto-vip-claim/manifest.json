@@ -1,0 +1,12 @@
+{
+  "id": "auto-vip-claim",
+  "name": "自动领取VIP",
+  "version": "1.0.0",
+  "description": "重新启用每日酷狗畅听会员自动领取与概念会员升级",
+  "author": "Community",
+  "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>",
+  "main": "index.js",
+  "capabilities": {
+    "kugouApi": true
+  }
+}

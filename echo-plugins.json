@@ -1,0 +1,13 @@
+{
+  "name": "不知名插件源",
+  "homepage": "https://github.com/Jursin/auto-vip-claim",
+  "plugins": [
+    {
+      "id": "auto-vip-claim",
+      "name": "自动领取VIP",
+      "path": "auto-vip-claim",
+      "homepage": "https://github.com/Jursin/auto-vip-claim/tree/main/auto-vip-claim",
+      "tags": []
+    }
+  ]
+}
