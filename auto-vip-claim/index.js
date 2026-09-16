@@ -8,9 +8,17 @@ const getToday = () => {
   }
 }
 
-const isAuthExpired = (body) =>
-  Number(body?.error_code) === 20018 ||
-  (typeof body?.msg === 'string' && body.msg.includes('登录已过期'))
+const isAuthExpired = (body) => {
+  const payload = body?.data && typeof body.data === 'object' ? body.data : body
+  return (
+    [body?.error_code, body?.err_code, body?.errcode, payload?.error_code, payload?.err_code, payload?.errcode].some(
+      (code) => [20018, 51002].includes(Number(code)),
+    ) ||
+    [body?.msg, payload?.msg].some(
+      (message) => typeof message === 'string' && message.includes('登录已过期'),
+    )
+  )
+}
 
 const hasClaimedToday = (rec) => {
   const today = getToday()
@@ -70,7 +78,7 @@ export function activate(ctx) {
   const requestAs = async (account, url, params) => {
     const res = await ctx.electron.api
       .request({ method: 'GET', url, params, headers: { Authorization: buildAuth(account) } })
-      .catch(() => null)
+      .catch((error) => error?.response?.body ?? error?.response?.data ?? error?.body ?? null)
     return res?.body ?? res
   }
 
